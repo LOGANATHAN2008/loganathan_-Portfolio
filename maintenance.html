@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upgrading Systems | Loganathan.M</title>
+    <link rel="icon" href="assets/img/Blue_Modern_Computer_Technology_Logo-removebg-preview.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --main-color: #00eeff;
+            --secondary-color: #a855f7;
+            --bg-dark: #080c10;
+            --text-light: #e0e0f0;
+            --muted: #8892b0;
+            --glass-bg: rgba(16, 20, 32, 0.6);
+            --glass-border: rgba(0, 238, 255, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Particle Background Container */
+        #tsparticles {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Ambient Glow */
+        .ambient-glow {
+            position: absolute;
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(0,238,255,0.05) 0%, transparent 60%);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            pointer-events: none;
+            animation: pulse-glow 8s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulse-glow {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+            100% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+        }
+
+        /* Premium Glass Card */
+        .glass-card {
+            position: relative;
+            z-index: 10;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 60px 50px;
+            max-width: 580px;
+            width: 92%;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0,238,255,0.05);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            transform-style: preserve-3d;
+        }
+
+        /* Brand Row */
+        .brand-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            transform: translateZ(20px);
+        }
+        .brand-row img { width: 36px; height: 36px; filter: drop-shadow(0 0 8px var(--main-color)); }
+        .brand-row span { font-size: 1.1rem; font-weight: 700; letter-spacing: 1px; color: #fff; }
+        .brand-row span span { color: var(--main-color); }
+
+        /* Animated Icon Sphere */
+        .sphere-container {
+            position: relative;
+            width: 120px; height: 120px;
+            margin: 0 auto 30px;
+            display: flex; align-items: center; justify-content: center;
+            transform: translateZ(40px);
+        }
+        .sphere-ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 2px dashed rgba(0,238,255,0.4);
+            animation: spin-ring 12s linear infinite;
+        }
+        .sphere-ring-2 {
+            position: absolute;
+            inset: -15px;
+            border-radius: 50%;
+            border: 1px solid rgba(168,85,247,0.3);
+            animation: spin-ring 8s linear infinite reverse;
+        }
+        .sphere-core {
+            width: 80px; height: 80px;
+            background: linear-gradient(135deg, rgba(0,238,255,0.1), rgba(168,85,247,0.1));
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 30px rgba(0,238,255,0.2);
+            animation: float 4s ease-in-out infinite;
+        }
+        .sphere-core i {
+            font-size: 2.5rem;
+            color: var(--main-color);
+            filter: drop-shadow(0 0 10px var(--main-color));
+        }
+
+        @keyframes spin-ring { 100% { transform: rotate(360deg); } }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            transform: translateZ(30px);
+            background: linear-gradient(to right, #fff, var(--main-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            color: var(--muted);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 35px;
+            min-height: 48px; /* Space for Typed.js */
+            transform: translateZ(20px);
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(168,85,247,0.1);
+            border: 1px solid rgba(168,85,247,0.3);
+            border-radius: 99px;
+            padding: 8px 24px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #d8b4fe;
+            margin-bottom: 35px;
+            transform: translateZ(25px);
+            box-shadow: 0 0 20px rgba(168,85,247,0.1);
+        }
+
+        /* Premium Progress Bar */
+        .progress-track {
+            background: rgba(255,255,255,0.04);
+            border-radius: 99px;
+            height: 6px;
+            width: 100%;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(15px);
+        }
+        .progress-bar {
+            position: absolute;
+            top: 0; left: 0; height: 100%;
+            background: linear-gradient(90deg, var(--main-color), var(--secondary-color), var(--main-color));
+            background-size: 200% 100%;
+            border-radius: 99px;
+            animation: loading-bar 2s ease-in-out infinite alternate, gradient-shift 3s linear infinite;
+        }
+        
+        @keyframes loading-bar { 0% { width: 30%; } 100% { width: 85%; } }
+        @keyframes gradient-shift { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+
+        /* Social Icons */
+        .socials {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 30px;
+            transform: translateZ(20px);
+        }
+        .socials a {
+            width: 44px; height: 44px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .socials a:hover {
+            background: var(--main-color);
+            color: var(--bg-dark);
+            border-color: var(--main-color);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(0,238,255,0.3);
+        }
+
+        /* Footer Info */
+        .footer-info {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+            transform: translateZ(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .footer-info i { animation: spin 4s linear infinite; }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .glass-card { padding: 40px 24px; border-radius: 24px; }
+            h1 { font-size: 2.2rem; }
+            .sphere-container { width: 100px; height: 100px; }
+            .sphere-core { width: 64px; height: 64px; }
+            .sphere-core i { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <div id="tsparticles"></div>
+    <div class="ambient-glow"></div>
+
+    <!-- Main Card (Vanilla Tilt) -->
+    <div class="glass-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
+        <div class="brand-row">
+            <img src="assets/img/Blue_Modern_Computer_Technology_Logo-removebg-preview.png" alt="Logo">
+            <span>Loganathan<span>.M</span></span>
+        </div>
+
+        <div class="sphere-container">
+            <div class="sphere-ring"></div>
+            <div class="sphere-ring-2"></div>
+            <div class="sphere-core">
+                <i class="fa-solid fa-code-pull-request"></i>
+            </div>
+        </div>
+
+        <h1>System <span>Upgrade</span></h1>
+        
+        <!-- The typed text will be injected here, but Firebase can override the raw text if configured -->
+        <p class="subtitle"><span id="typed-message"></span></p>
+
+        <div class="status-badge" id="eta-badge" style="display:none">
+            <i class="fa-regular fa-clock fa-spin"></i>
+            <span id="eta-text">ETA: Calculating...</span>
+        </div>
+
+        <div class="progress-track">
+            <div class="progress-bar"></div>
+        </div>
+
+        <div class="socials">
+            <a href="https://github.com/LOGANATHAN2008" target="_blank"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/loganathan-m-2008l/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/kutty_loga_" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/7010123479" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+
+        <p class="footer-info"><i class="fa-solid fa-gear"></i> Core Systems Optimization</p>
+    </div>
+
+    <!-- Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <script>
+        // Init tsParticles Background
+        tsParticles.load("tsparticles", {
+            background: { color: { value: "transparent" } },
+            fpsLimit: 60,
+            interactivity: {
+                events: { onHover: { enable: true, mode: "repulse" }, resize: true },
+                modes: { repulse: { distance: 100, duration: 0.4 } }
+            },
+            particles: {
+                color: { value: ["#00eeff", "#a855f7", "#ffffff"] },
+                links: { color: "#ffffff", distance: 150, enable: true, opacity: 0.1, width: 1 },
+                move: { enable: true, speed: 0.8, direction: "none", random: true, straight: false, outModes: "out" },
+                number: { density: { enable: true, area: 800 }, value: 60 },
+                opacity: { value: { min: 0.1, max: 0.5 } },
+                shape: { type: "circle" },
+                size: { value: { min: 1, max: 3 } }
+            },
+            detectRetina: true
+        });
+
+        // Init Typed.js for the dynamic subtitle effect
+        let fallbackMessage = "We're working hard to bring you something amazing. The portfolio will be back shortly!";
+        let typedInstance = new Typed('#typed-message', {
+            strings: [fallbackMessage, "Upgrading core modules...", "Enhancing user experience...", fallbackMessage],
+            typeSpeed: 30,
+            backSpeed: 20,
+            backDelay: 2000,
+            loop: true,
+            showCursor: true,
+            cursorChar: '|'
+        });
+
+        // Init Vanilla Tilt
+        VanillaTilt.init(document.querySelector(".glass-card"), {
+            max: 8,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.15
+        });
+
+        // Firebase Sync
+        const firebaseConfig = {
+            apiKey: "AIzaSyDl6xshZIVB-q9-wnsrQ9-efnVb1vKw-hY",
+            authDomain: "loganathan-portfolio-ce87b.firebaseapp.com",
+            projectId: "loganathan-portfolio-ce87b",
+            storageBucket: "loganathan-portfolio-ce87b.firebasestorage.app",
+            messagingSenderId: "897586503180",
+            appId: "1:897586503180:web:30e987c6aae39fc4515829",
+            measurementId: "G-EYGEJGGF3L"
+        };
+        
+        try {
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
+            db.collection('settings').doc('maintenance').get().then(doc => {
+                if (doc.exists) {
+                    const d = doc.data();
+                    
+                    // If Admin provided a custom message, destroy the typing effect and just show the raw text
+                    // Or we could update the Typed.js string! Let's update Typed.js strings to be fancy.
+                    if (d.message) {
+                        typedInstance.destroy(); // Stop old instance
+                        typedInstance = new Typed('#typed-message', {
+                            strings: [d.message],
+                            typeSpeed: 40,
+                            showCursor: false
+                        });
+                    }
+                    
+                    if (d.eta) {
+                        document.getElementById('eta-badge').style.display = 'inline-flex';
+                        document.getElementById('eta-text').textContent = "ETA: " + d.eta;
+                    }
+                }
+            });
+        } catch(e) {
+            console.error("Firebase init failed", e);
+        }
+    </script>
+</body>
+</html>

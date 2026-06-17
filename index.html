@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Loganathan | AI & Web Developer Portfolio</title>
+    <meta name="description"
+        content="Explore Loganathan's portfolio: a professional Mobile & Web Developer specializing in AI and Data Science. View projects, skills, and certifications.">
+    <meta name="keywords"
+        content="Loganathan, Portfolio, AI Developer, Web Developer, BCA Student, DSU Bangalore, Mobile App Developer">
+    <link rel="icon" href="assets/img/Blue_Modern_Computer_Technology_Logo-removebg-preview.png" type="image/png">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- tsParticles -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script>
+        // ============================================================
+        // FIREBASE CONFIG Ã¢â‚¬â€ paste your Firebase config here
+        // ============================================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyDl6xshZIVB-q9-wnsrQ9-efnVb1vKw-hY",
+            authDomain: "loganathan-portfolio-ce87b.firebaseapp.com",
+            projectId: "loganathan-portfolio-ce87b",
+            storageBucket: "loganathan-portfolio-ce87b.firebasestorage.app",
+            messagingSenderId: "897586503180",
+            appId: "1:897586503180:web:30e987c6aae39fc4515829",
+            measurementId: "G-EYGEJGGF3L"
+        };
+        try {
+            firebase.initializeApp(firebaseConfig);
+            const _db = firebase.firestore();
+            // Check maintenance mode
+            _db.collection('settings').doc('maintenance').get().then(doc => {
+                if (doc.exists && doc.data().enabled) {
+                    window.location.href = 'maintenance.html';
+                } else {
+                    document.getElementById('maintenance-check').classList.add('hidden');
+                }
+            }).catch(() => {
+                document.getElementById('maintenance-check').classList.add('hidden');
+            });
+        } catch (e) {
+            document.getElementById('maintenance-check')?.classList.add('hidden');
+        }
+    </script>
+</head>
+
+<body>
+
+    <!-- Maintenance Check Overlay -->
+    <div id="maintenance-check">
+        <div style="text-align:center;color:#555">
+            <div
+                style="width:40px;height:40px;border:2px solid rgba(0,238,255,0.2);border-top-color:#00eeff;border-radius:50%;animation:loaderSpin 0.8s linear infinite;margin:0 auto 14px;">
+            </div>
+            <p style="font-size:0.8rem;font-family:Inter,sans-serif">Loading...</p>
+        </div>
+    </div>
+
+    <div id="page-loader">
+        <div class="premium-loader">
+            <div class="premium-loader-core"></div>
+        </div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Removed Scroll Progress Bar -->
+    <!-- Cursor Glow (desktop) -->
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-overlay" id="mobile-overlay" onclick="closeMobileNav()"></div>
+
+    <!-- Back to Top -->
+    <a href="https://ig.me/m/loganathanm.in" target="_blank" id="ig-msg-btn" aria-label="Message me on Instagram">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+
+    <div id="particles-js"></div>
+
+    <!-- Header / Navbar -->
+    <header class="header">
+        <a href="#home" class="logo">
+            <img src="assets/img/Blue_Modern_Computer_Technology_Logo-removebg-preview.png" alt="Loganathan Logo">
+            <span>Loganathan</span>
+        </a>
+        <nav class="navbar" id="navbar">
+            <button class="nav-close-btn" onclick="closeMobileNav()"><i class="fa-solid fa-xmark"></i></button>
+            <a href="#home" class="active"><i class="fa-solid fa-house"></i></a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#education">Education</a>
+            <a href="#certifications">Certificates</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <div id="theme-icon">
+            <i class="fa-solid fa-moon"></i>
+        </div>
+
+        <div class="menu-btn" id="menu-icon" onclick="toggleMobileNav()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="home" id="home">
+        <div class="home-content">
+            <h3>Hello,</h3>
+            <h1>I'm <span class="gradient-text">Loganathan M</span></h1>
+            <h3 style="color: var(--main-color);">And I'm an <span class="multiple-text"></span></h3>
+            <p>An enthusiastic and dedicated BCA student with a strong passion for Artificial Intelligence, Data
+                Science, and building modern web applications. Currently pushing the boundaries of technology and design
+                from Bangalore.</p>
+            <div class="social-media">
+                <a href="https://www.instagram.com/kutty_loga_?igsh=YTQ4NTIxenk4c3Vt" target="_blank"><i
+                        class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/loganathan-m-2008l/" target="_blank"><i
+                        class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com/LOGANATHAN2008" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="https://wa.me/7010123479" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+            <div class="btn-group">
+                <a href="javascript:void(0)" id="view-resume-btn" class="btn btn-gradient">View Resume</a>
+                <a href="#contact" class="btn btn-outline">Hire Me</a>
+            </div>
+        </div>
+        <div class="home-img">
+            <div class="img-box">
+                <div class="img-item">
+                    <img src="assets/img/WhatsApp Image 2026-03-30 at 4.53.40 PM.jpeg" alt="Loganathan Profile">
+                </div>
+                <!-- Multiple Orbiting Rings -->
+                <div class="orbit-ring orbit-ring-1"></div>
+                <div class="orbit-ring orbit-ring-2"></div>
+                <div class="orbit-ring orbit-ring-3"></div>
+
+                <!-- Orbiting Icons Container -->
+                <div class="icons-orbit">
+                    <div class="orbit-icon python"><i class="fa-brands fa-python"></i></div>
+                    <div class="orbit-icon js"><i class="fa-brands fa-js"></i></div>
+                    <div class="orbit-icon react"><i class="fa-brands fa-react"></i></div>
+                    <div class="orbit-icon css"><i class="fa-brands fa-css3-alt"></i></div>
+                    <div class="orbit-icon html"><i class="fa-brands fa-html5"></i></div>
+                    <div class="orbit-icon java"><i class="fa-brands fa-java"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-img">
+            <img src="assets/img/loga image profile.jpeg" alt="Loganathan Profile Picture">
+            <div class="about-img-overlay"></div>
+        </div>
+        <div class="about-content">
+            <h2 class="heading">About <span>Me</span></h2>
+            <h3>Mobile & Web Developer</h3>
+            <p>Hi, I'm <span class="highlight">Loganathan</span> from <span class="highlight">Vellore</span>, currently
+                pursuing my <span class="highlight">BCA</span> at <span class="highlight">Dayananda Sagar University
+                    (DSU), Bangalore</span>. I am an <span class="highlight">enthusiastic and dedicated</span> learner
+                with a strong passion for <span class="highlight">Artificial Intelligence, Data Science</span>, and
+                building modern web applications. I specialize in <span class="highlight">software and web
+                    development</span>, creating user-friendly digital solutions that blend functionality and style. I
+                enjoy working on <span class="highlight">innovative projects</span> and aim to become a <span
+                    class="highlight">well-rounded full-stack developer</span>.</p>
+
+            <div class="about-stats-grid">
+                <div class="stat-card glass-card">
+                    <i class="fa-solid fa-code"></i>
+                    <h4 class="counter" id="stat-1-num" data-target="10">0</h4>
+                    <p id="stat-1-text">Projects</p>
+                </div>
+                <div class="stat-card glass-card">
+                    <i class="fa-solid fa-certificate"></i>
+                    <h4 class="counter" id="stat-2-num" data-target="7">0</h4>
+                    <p id="stat-2-text">Certifications</p>
+                </div>
+                <div class="stat-card glass-card">
+                    <i class="fa-solid fa-users"></i>
+                    <h4 class="counter" id="stat-3-num" data-target="10000">0</h4>
+                    <p id="stat-3-text">Followers</p>
+                </div>
+            </div>
+
+            <a href="#contact" class="btn shadow-blue">Contact Me</a>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <canvas id="skills-canvas"></canvas>
+        <h2 class="heading">Technical <span>Skills</span></h2>
+        <div class="skills-wrapper">
+            <!-- Row 1: Moves Right -->
+            <div class="skills-row marquee-right">
+                <div class="skills-track">
+                    <div class="skill-card"><i class="fa-brands fa-html5" style="color:#e34c26"></i><span>HTML5</span>
+                    </div>
+                    <div class="skill-card"><i class="fa-brands fa-css3-alt" style="color:#264de4"></i><span>CSS3</span>
+                    </div>
+                    <div class="skill-card"><i class="fa-brands fa-js" style="color:#f7df1e"></i><span>JavaScript</span>
+                    </div>
+                    <div class="skill-card"><i class="fa-brands fa-python" style="color:#3776ab"></i><span>Python</span>
+                    </div>
+                    <div class="skill-card"><i class="fa-brands fa-react" style="color:#61dbfb"></i><span>React</span>
+                    </div>
+                    <div class="skill-card"><i class="fa-solid fa-brain" style="color:#ff00ea"></i><span>Gemini
+                            API</span></div>
+                    <div class="skill-card"><i class="fa-brands fa-php" style="color:#777bb4"></i><span>PHP</span></div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="skill-card"><i class="fa-brands fa-html5" style="color:#e34c26"></i><span>HTML5</span>
+                    </div>
+                    <div class="skill-card"><i class="fa-brands fa-css3-alt" style="color:#264de4"></i><span>CSS3</span>
+                    </div>
+                    <div class="skill-card"><i class="fa-brands fa-js" style="color:#f7df1e"></i><span>JavaScript</span>
+                    </div>
+                    <div class="skill-card"><i class="fa-brands fa-python" style="color:#3776ab"></i><span>Python</span>
+                    </div>
+                    <div class="skill-card"><i class="fa-brands fa-react" style="color:#61dbfb"></i><span>React</span>
+                    </div>
+                    <div class="skill-card"><i class="fa-solid fa-brain" style="color:#ff00ea"></i><span>Gemini
+                            API</span></div>
+                    <div class="skill-card"><i class="fa-brands fa-php" style="color:#777bb4"></i><span>PHP</span></div>
+                </div>
+            </div>
+
+            <!-- Row 2: Moves Left -->
+            <div class="skills-row marquee-left">
+                <div class="skills-track">
+                    <div class="skill-card"><i class="fa-solid fa-database" style="color:#4479a1"></i><span>MySQL</span>
+                    </div>
+                    <div class="skill-card"><i class="fa-solid fa-fire" style="color:#ffa611"></i><span>Firebase</span>
+                    </div>
+                    <div class="skill-card"><i class="fa-solid fa-cloud"
+                            style="color:#3448c5"></i><span>Cloudinary</span></div>
+                    <div class="skill-card"><i class="fa-brands fa-github" style="color:#fff"></i><span>GitHub</span>
+                    </div>
+                    <div class="skill-card"><i class="fa-solid fa-code" style="color:#007acc"></i><span>VS Code</span>
+                    </div>
+                    <div class="skill-card"><i class="fa-solid fa-video" style="color:#ff0000"></i><span>Video
+                            Editing</span></div>
+                    <div class="skill-card"><i class="fa-solid fa-image" style="color:#00ff88"></i><span>Image
+                            Editing</span></div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="skill-card"><i class="fa-solid fa-database" style="color:#4479a1"></i><span>MySQL</span>
+                    </div>
+                    <div class="skill-card"><i class="fa-solid fa-fire" style="color:#ffa611"></i><span>Firebase</span>
+                    </div>
+                    <div class="skill-card"><i class="fa-solid fa-cloud"
+                            style="color:#3448c5"></i><span>Cloudinary</span></div>
+                    <div class="skill-card"><i class="fa-brands fa-github" style="color:#fff"></i><span>GitHub</span>
+                    </div>
+                    <div class="skill-card"><i class="fa-solid fa-code" style="color:#007acc"></i><span>VS Code</span>
+                    </div>
+                    <div class="skill-card"><i class="fa-solid fa-video" style="color:#ff0000"></i><span>Video
+                            Editing</span></div>
+                    <div class="skill-card"><i class="fa-solid fa-image" style="color:#00ff88"></i><span>Image
+                            Editing</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <h2 class="heading">Check Out My <span>Projects</span></h2>
+        <div class="projects-container">
+            <!-- Project Ecosystem Hub -->
+            <div class="project-card glass-card">
+                <div class="project-card-top">
+                    <img src="assets/img/projects/project_showcase.png" alt="Project Ecosystem Hub">
+                    <div class="project-hover-layer">
+                        <a href="https://project.loganathanm.in/" target="_blank" class="live-btn"><i
+                                class="fa-solid fa-arrow-up-right-from-square"></i> Live Hub</a>
+                    </div>
+                </div>
+                <div class="project-card-bottom">
+                    <h4>Project Hub</h4>
+                    <p>A centralized high-end portal showcasing my collection of AI systems and immersive web
+                        applications.</p>
+                    <button class="btn-use-small" onclick="openModal('project_hub')">How to Use</button>
+                </div>
+            </div>
+            <!-- Learning Platform -->
+            <div class="project-card glass-card">
+                <div class="project-card-top">
+                    <img src="assets/img/projects/learning.png" alt="Learning Platform">
+                    <div class="project-hover-layer">
+                        <a href="https://learn.loganathanm.in/" target="_blank" class="live-btn"><i
+                                class="fa-solid fa-arrow-up-right-from-square"></i> Live View</a>
+                    </div>
+                </div>
+                <div class="project-card-bottom">
+                    <h4>Learning Platform</h4>
+                    <p>An immersive educational ecosystem designed to redefine online learning and course management
+                        through interactive modules.</p>
+                    <button class="btn-use-small" onclick="openModal('learning')">How to Use</button>
+                </div>
+            </div>
+            <!-- Healthcare Portal -->
+            <div class="project-card glass-card">
+                <div class="project-card-top">
+                    <img src="assets/img/projects/healthcare.png" alt="Healthcare Portal">
+                    <div class="project-hover-layer">
+                        <a href="https://healthcare.loganathanm.in/" target="_blank" class="live-btn"><i
+                                class="fa-solid fa-arrow-up-right-from-square"></i> Live View</a>
+                    </div>
+                </div>
+                <div class="project-card-bottom">
+                    <h4>Healthcare Portal</h4>
+                    <p>A next-gen medical dashboard with high-security data compliance and doctor-patient interaction.
+                    </p>
+                    <button class="btn-use-small" onclick="openModal('healthcare')">How to Use</button>
+                </div>
+            </div>
+            <!-- Language App -->
+            <div class="project-card glass-card">
+                <div class="project-card-top">
+                    <img src="assets/img/projects/language.png" alt="Language App">
+                    <div class="project-hover-layer">
+                        <a href="https://ling.loganathanm.in/" target="_blank" class="live-btn"><i
+                                class="fa-solid fa-arrow-up-right-from-square"></i> Live View</a>
+                    </div>
+                </div>
+                <div class="project-card-bottom">
+                    <h4>Language App</h4>
+                    <p>A sophisticated linguistic tool leveraging smart algorithms for language mastery.</p>
+                    <button class="btn-use-small" onclick="openModal('language')">How to Use</button>
+                </div>
+            </div>
+            <!-- ExamPro DSU -->
+            <div class="project-card glass-card">
+                <div class="project-card-top">
+                    <img src="assets/img/projects/exampro.png" alt="ExamPro DSU">
+                    <div class="project-hover-layer">
+                        <a href="https://dsu.loganathanm.in/" target="_blank" class="live-btn"><i
+                                class="fa-solid fa-arrow-up-right-from-square"></i> Live View</a>
+                    </div>
+                </div>
+                <div class="project-card-bottom">
+                    <h4>ExamPro DSU</h4>
+                    <p>An advanced online examination platform transforming campus education digitally.</p>
+                    <button class="btn-use-small" onclick="openModal('exampro')">How to Use</button>
+                </div>
+            </div>
+            <!-- AI Chatbot (Xyntra) -->
+            <div class="project-card glass-card">
+                <div class="project-card-top">
+                    <img src="assets/img/projects/chatbot.png" alt="AI Chatbot">
+                    <div class="project-hover-layer">
+                        <a href="https://share.google/vKPAHlGLL3HRZXxN8" target="_blank" class="live-btn"><i
+                                class="fa-solid fa-arrow-up-right-from-square"></i> Live View</a>
+                    </div>
+                </div>
+                <div class="project-card-bottom">
+                    <h4> AI Chat</h4>
+                    <p>An intelligent web-based application simulating human-like conversations using NLP concepts.</p>
+                    <button class="btn-use-small" onclick="openModal('chatbot')">How to Use</button>
+                </div>
+            </div>
+            <!-- Weather Analysis -->
+            <div class="project-card glass-card">
+                <div class="project-card-top">
+                    <img src="assets/img/projects/weather.png" alt="Weather Analysis">
+                    <div class="project-hover-layer">
+                        <a href="https://weather-analysis-6.onrender.com/" target="_blank" class="live-btn"><i
+                                class="fa-solid fa-arrow-up-right-from-square"></i> Live View</a>
+                    </div>
+                </div>
+                <div class="project-card-bottom">
+                    <h4>Weather Analysis</h4>
+                    <p>Real-time weather and climate data analysis using APIs and visualization tools.</p>
+                    <button class="btn-use-small" onclick="openModal('weather')">How to Use</button>
+                </div>
+            </div>
+            <!-- Java Chat App -->
+            <div class="project-card glass-card">
+                <div class="project-card-top">
+                    <img src="assets/img/projects/java_chat.png" alt="Java Chat App">
+                    <div class="project-hover-layer">
+                        <a href="https://github.com/LOGANATHAN2008" target="_blank" class="live-btn"><i
+                                class="fa-solid fa-arrow-up-right-from-square"></i> Live View</a>
+                    </div>
+                </div>
+                <div class="project-card-bottom">
+                    <h4>Java Chat App</h4>
+                    <p>WhatsApp-like real-time messaging app with voice messaging and Java infrastructure.</p>
+                    <button class="btn-use-small" onclick="openModal('javachat')">How to Use</button>
+                </div>
+            </div>
+            <!-- Exam Face Recognition -->
+            <div class="project-card glass-card">
+                <div class="project-card-top">
+                    <img src="assets/img/projects/face_exam.png" alt="Exam Face Recognition">
+                    <div class="project-hover-layer">
+                        <a href="https://github.com/LOGANATHAN2008" target="_blank" class="live-btn"><i
+                                class="fa-solid fa-arrow-up-right-from-square"></i> Live View</a>
+                    </div>
+                </div>
+                <div class="project-card-bottom">
+                    <h4>AI Proctor</h4>
+                    <p>Robust AI-based proctoring system using facial recognition to verify candidates during exams.</p>
+                    <button class="btn-use-small" onclick="openModal('faceexam')">How to Use</button>
+                </div>
+            </div>
+            <!-- AI Meme Generator -->
+            <div class="project-card glass-card">
+                <div class="project-card-top">
+                    <img src="assets/img/projects/meme_gen.png" alt="AI Meme Generator">
+                    <div class="project-hover-layer">
+                        <a href="https://github.com/LOGANATHAN2008" target="_blank" class="live-btn"><i
+                                class="fa-solid fa-arrow-up-right-from-square"></i> Live View</a>
+                    </div>
+                </div>
+                <div class="project-card-bottom">
+                    <h4>AI Meme Gen</h4>
+                    <p>Tool that creates hilarious memes by combining AI-generated captions with images.</p>
+                    <button class="btn-use-small" onclick="openModal('memegen')">How to Use</button>
+                </div>
+            </div>
+            <!-- Face Attendance System -->
+            <div class="project-card glass-card">
+                <div class="project-card-top">
+                    <img src="assets/img/projects/face_attendance.png" alt="Face Attendance System">
+                    <div class="project-hover-layer">
+                        <a href="https://github.com/LOGANATHAN2008" target="_blank" class="live-btn"><i
+                                class="fa-solid fa-arrow-up-right-from-square"></i> Live View</a>
+                    </div>
+                </div>
+                <div class="project-card-bottom">
+                    <h4>AI Attendance</h4>
+                    <p>Automated attendance system using real-time facial recognition technology.</p>
+                    <button class="btn-use-small" onclick="openModal('attendance')">How to Use</button>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; width: 100%;">
+            <button onclick="loadGithubProjects()" class="btn-view-all" id="btn-load-github">VIEW ALL PROJECTS</button>
+        </div>
+    </section>
+
+    <!-- GitHub Projects Section (Hidden initially) -->
+    <section class="github-projects" id="github-projects"
+        style="display: none; padding-top: 40px; padding-bottom: 80px;">
+        <h2 class="section-title" style="text-align: left; font-size: 1.8rem; margin-bottom: 30px; margin-left: 5%;">
+            More Projects <span style="color: var(--main-color);">(GitHub)</span></h2>
+        <div class="github-grid" id="github-grid">
+            <div style="text-align: center; width: 100%; color: var(--muted);">
+                <i class="fa-solid fa-spinner fa-spin"></i> Fetching repositories...
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Use Modal -->
+    <div id="projectModal" class="project-modal">
+        <div class="modal-content glass-card">
+            <span class="close-modal">&times;</span>
+            <div id="modalBody">
+                <!-- Content will be injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Resume Modal -->
+    <div id="resumeModal" class="modal">
+        <div class="resume-modal-content">
+            <span class="close-resume">&times;</span>
+            <div id="resume-body">
+                <div class="resume-header">
+                    <h1>LOGANATHAN M</h1>
+                    <div class="resume-contact-bar" style="margin-top:10px;">
+                        <span><i class="fa-solid fa-phone"></i> +91 7010123479</span>
+                        <span><i class="fa-solid fa-envelope"></i> loganathan082008@gmail.com</span>
+                        <span><i class="fa-solid fa-location-dot"></i> Bengaluru, India</span>
+                    </div>
+                    <div class="resume-contact-bar" style="margin-top:10px; font-size:1.3rem;">
+                        <span><i class="fa-brands fa-github"></i> github.com/loganathan2008</span>
+                        <span><i class="fa-brands fa-linkedin"></i> linkedin.com/in/loganathanm-in</span>
+                        <span><i class="fa-solid fa-globe"></i> loganathanm.in</span>
+                    </div>
+                </div>
+
+                <div class="resume-grid">
+                    <div class="resume-left">
+                        <section class="resume-section">
+                            <h3><i class="fa-solid fa-user-tie"></i> PROFESSIONAL SUMMARY</h3>
+                            <p>Enthusiastic fresher pursuing BCA with a strong foundation in Web Development and UI/UX
+                                Design. Skilled in HTML, CSS, JavaScript, Python, and Firebase, with hands-on experience
+                                building and deploying live web applications. Passionate about clean code and creating
+                                user-friendly digital experiences.</p>
+                        </section>
+
+                        <section class="resume-section">
+                            <h3><i class="fa-solid fa-graduation-cap"></i> EDUCATION</h3>
+                            <div class="edu-item">
+                                <strong>Bachelor of Computer Applications (BCA)</strong>
+                                <p>DSU Bangalore University, Bengaluru<br>Jan 2025 – Jan 2028 (Expected)</p>
+                            </div>
+                            <div class="edu-item">
+                                <strong>Higher Secondary Certificate (HSC)</strong>
+                                <p>KSR School, Madhanur<br>Jan 2025</p>
+                            </div>
+                        </section>
+
+                        <section class="resume-section">
+                            <h3><i class="fa-solid fa-briefcase"></i> EXPERIENCE</h3>
+                            <div class="edu-item">
+                                <strong>Fresher – Self-Directed Learning & Project Development</strong>
+                                <p>Independent | Bengaluru, India<br>2025 – Present</p>
+                                <ul
+                                    style="margin-top: 10px; padding-left: 20px; color: var(--text-color); font-size: 1.4rem; line-height: 1.6;">
+                                    <li>Building academic and personal projects to strengthen UI/UX and Frontend
+                                        Development skills.</li>
+                                    <li>Practising Responsive Web Design, User Research, and Modern JavaScript
+                                        workflows.</li>
+                                    <li>Learning real-world development processes including Git and GitHub version
+                                        control.</li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="resume-right">
+                        <section class="resume-section">
+                            <h3><i class="fa-solid fa-folder-open"></i> PROJECTS</h3>
+                            <div class="edu-item">
+                                <strong>1. ExamPro DSU – Online Examination Platform</strong>
+                                <p style="color:var(--main-color); margin-top:3px;"><i class="fa-solid fa-globe"></i>
+                                    dsu.loganathanm.in</p>
+                                <p style="font-size:1.3rem; margin-top:3px;"><em>Technologies: HTML, CSS, JavaScript,
+                                        Firebase, Cloudinary</em></p>
+                                <ul
+                                    style="margin-top: 8px; margin-bottom: 15px; padding-left: 20px; color: var(--text-color); font-size: 1.3rem; line-height: 1.5;">
+                                    <li>Built an advanced online examination platform for conducting digital exams
+                                        efficiently.</li>
+                                    <li>Integrated Firebase for real-time data management.</li>
+                                    <li>Integrated Cloudinary for media storage and management.</li>
+                                    <li>Features include Exam Scheduling, Auto-Grading, and Student Performance
+                                        Dashboards.</li>
+                                </ul>
+                            </div>
+                            <div class="edu-item">
+                                <strong>2. Learning Platform – Interactive E-Learning</strong>
+                                <p style="color:var(--main-color); margin-top:3px;"><i class="fa-solid fa-globe"></i>
+                                    learn.loganathanm.in</p>
+                                <p style="font-size:1.3rem; margin-top:3px;"><em>Technologies: HTML, CSS, JavaScript,
+                                        Firebase, Cloudinary</em></p>
+                                <ul
+                                    style="margin-top: 8px; margin-bottom: 15px; padding-left: 20px; color: var(--text-color); font-size: 1.3rem; line-height: 1.5;">
+                                    <li>Developed an interactive E-Learning platform with structured courses.</li>
+                                    <li>Implemented Course Management and Progress Tracking.</li>
+                                    <li>Created dynamic content delivery using Firebase.</li>
+                                    <li>Focused on clean and user-friendly UI/UX.</li>
+                                </ul>
+                            </div>
+                            <div class="edu-item">
+                                <strong>3. Language Learning App – Smart Vocabulary Tool</strong>
+                                <p style="color:var(--main-color); margin-top:3px;"><i class="fa-solid fa-globe"></i>
+                                    ling.loganathanm.in</p>
+                                <p style="font-size:1.3rem; margin-top:3px;"><em>Technologies: HTML, CSS, JavaScript,
+                                        Firebase, Cloudinary</em></p>
+                                <ul
+                                    style="margin-top: 8px; padding-left: 20px; color: var(--text-color); font-size: 1.3rem; line-height: 1.5;">
+                                    <li>Designed a smart language learning application.</li>
+                                    <li>Added gamified learning paths for better engagement.</li>
+                                    <li>Implemented dynamic content and real-time user data management.</li>
+                                    <li>Used Cloudinary for audio and media delivery.</li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <section class="resume-section">
+                            <h3><i class="fa-solid fa-code"></i> TECHNICAL SKILLS</h3>
+                            <div class="edu-item">
+                                <p><strong>Design:</strong> UI/UX Design, Figma, Web Design</p>
+                                <p style="margin-top:8px;"><strong>Programming:</strong> HTML, CSS, JavaScript, Python,
+                                    PHP</p>
+                                <p style="margin-top:8px;"><strong>Tools & Platforms:</strong> Git, GitHub, Vercel, VS
+                                    Code, Google Cloud Platform (GCP)</p>
+                                <p style="margin-top:8px;"><strong>Cloud & Database:</strong> Firebase, Cloudinary</p>
+                                <p style="margin-top:8px;"><strong>Soft Skills:</strong> Problem Solving, Creativity,
+                                    Adaptability, Continuous Learning</p>
+                            </div>
+                        </section>
+
+                        <section class="resume-section">
+                            <h3><i class="fa-solid fa-award"></i> CERTIFICATIONS</h3>
+                            <ul
+                                style="padding-left: 20px; color: var(--text-color); font-size: 1.4rem; line-height: 1.6;">
+                                <li>Infosys – Full Stack Development Certification</li>
+                                <li>Cybersecurity Fundamentals Certification</li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="resume-footer-actions">
+                    <a href="resume...logaa.pdf" download="Loganathan_M_Resume.pdf" class="download-btn"
+                        style="text-decoration:none; display:inline-flex; align-items:center; gap:8px;">Download PDF <i
+                            class="fa-solid fa-download"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="education" id="education">
+        <h2 class="heading">Academic <span>Journey</span></h2>
+        <div class="timeline">
+            <div class="timeline-line"></div>
+
+            <!-- BCA -->
+            <div class="timeline-item left">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content card-dark">
+                    <h3 class="cyan-text">BCA - Bachelor of Computer Application</h3>
+                    <p class="institution">Dayananda Sagar University, Bangalore | 2025 - 2028</p>
+                    <ul class="check-list-simple">
+                        <li>Specializing in Web Development & AI</li>
+                        <li>Core focus on Python & Data Structures</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Higher Secondary -->
+            <div class="timeline-item right">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content card-dark">
+                    <h3 class="cyan-text">Higher Secondary Education</h3>
+                    <p class="institution">KSR School madhanur tamil nadu | 2024 - 2025</p>
+                    <ul class="check-list-simple">
+                        <li>Specialized in Computer applications</li>
+                        <li>Graduated with Distinction</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="certifications" id="certifications">
+        <h2 class="heading-line">Certificates</h2>
+        <p class="cert-subtitle">My Achievements & Certifications</p>
+        <div class="cert-grid">
+            <!-- Front End Developer -->
+            <div class="cert-card cert-professional">
+                <div class="cert-card-img">
+                    <img src="assets/img/certificates/Front End Web Developer Certification_page-0001.jpg"
+                        alt="Front End Developer Certificate">
+                    <div class="scan-line"></div>
+                    <div class="verified-badge"><i class="fa-solid fa-circle-check"></i> VERIFIED</div>
+                </div>
+                <div class="cert-card-info">
+                    <div class="cert-title-row"><i class="fa-solid fa-award award-icon"></i>
+                        <h4>Front End Web Developer</h4>
+                    </div>
+                    <p class="cert-desc">Infosys Springboard Certification.</p>
+                    <a href="assets/img/certificates/Front End Web Developer Certification_page-0001.jpg"
+                        target="_blank" class="view-cert-btn">View Certificate <i
+                            class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <!-- HTML5 -->
+            <div class="cert-card cert-professional">
+                <div class="cert-card-img">
+                    <img src="assets/img/certificates/HTML5 - The Language_page-0001.jpg" alt="HTML5 Certificate">
+                    <div class="scan-line"></div>
+                    <div class="verified-badge"><i class="fa-solid fa-circle-check"></i> VERIFIED</div>
+                </div>
+                <div class="cert-card-info">
+                    <div class="cert-title-row"><i class="fa-brands fa-html5 html-icon"></i>
+                        <h4>HTML5 - The Language</h4>
+                    </div>
+                    <p class="cert-desc">Infosys Springboard Certification.</p>
+                    <a href="assets/img/certificates/HTML5 - The Language_page-0001.jpg" target="_blank"
+                        class="view-cert-btn">View Certificate <i
+                            class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <!-- CSS3 -->
+            <div class="cert-card cert-professional">
+                <div class="cert-card-img">
+                    <img src="assets/img/certificates/CSS3_page-0001.jpg" alt="CSS3 Certificate">
+                    <div class="scan-line"></div>
+                    <div class="verified-badge"><i class="fa-solid fa-circle-check"></i> VERIFIED</div>
+                </div>
+                <div class="cert-card-info">
+                    <div class="cert-title-row"><i class="fa-brands fa-css3-alt css-icon"></i>
+                        <h4>CSS3 Certification</h4>
+                    </div>
+                    <p class="cert-desc">Infosys Springboard Certification.</p>
+                    <a href="assets/img/certificates/CSS3_page-0001.jpg" target="_blank" class="view-cert-btn">View
+                        Certificate <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <!-- JavaScript -->
+            <div class="cert-card cert-professional">
+                <div class="cert-card-img">
+                    <img src="assets/img/certificates/JavaScript_page-0001.jpg" alt="JavaScript Certificate">
+                    <div class="scan-line"></div>
+                    <div class="verified-badge"><i class="fa-solid fa-circle-check"></i> VERIFIED</div>
+                </div>
+                <div class="cert-card-info">
+                    <div class="cert-title-row"><i class="fa-brands fa-js-square js-icon"></i>
+                        <h4>JavaScript</h4>
+                    </div>
+                    <p class="cert-desc">Infosys Springboard Certification.</p>
+                    <a href="assets/img/certificates/JavaScript_page-0001.jpg" target="_blank"
+                        class="view-cert-btn">View Certificate <i
+                            class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <!-- Cyber Security -->
+            <div class="cert-card cert-professional">
+                <div class="cert-card-img">
+                    <img src="assets/img/certificates/stats_official.jpg" alt="Intro to Cyber Security Certificate">
+                    <div class="scan-line"></div>
+                    <div class="verified-badge"><i class="fa-solid fa-circle-check"></i> VERIFIED</div>
+                </div>
+                <div class="cert-card-info">
+                    <div class="cert-title-row"><i class="fa-solid fa-shield-halved cyber-icon"></i>
+                        <h4>Intro to Cyber Security</h4>
+                    </div>
+                    <p class="cert-desc">Infosys Springboard Certification.</p>
+                    <a href="assets/img/certificates/stats_official.jpg" target="_blank" class="view-cert-btn">View
+                        Certificate <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <!-- Probability & Statistics -->
+            <div class="cert-card cert-professional">
+                <div class="cert-card-img">
+                    <img src="assets/img/certificates/cyber_official.jpg" alt="Statistics Certificate">
+                    <div class="scan-line"></div>
+                    <div class="verified-badge"><i class="fa-solid fa-circle-check"></i> VERIFIED</div>
+                </div>
+                <div class="cert-card-info">
+                    <div class="cert-title-row"><i class="fa-solid fa-clock stats-icon"></i>
+                        <h4>Probability & Statistics</h4>
+                    </div>
+                    <p class="cert-desc">Infosys Springboard Certification.</p>
+                    <a href="assets/img/certificates/cyber_official.jpg" target="_blank" class="view-cert-btn">View
+                        Certificate <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews" id="reviews">
+        <h2 class="section-title" data-aos="fade-up">Client <span style="color: var(--main-color);">Reviews</span></h2>
+
+        <div class="reviews-container" data-aos="fade-up" data-aos-delay="200" id="reviews-container">
+            <div style="text-align: center; width: 100%; color: var(--muted);">
+                <i class="fa-solid fa-spinner fa-spin" style="margin-right: 8px;"></i> Loading reviews...
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-card-container">
+            <!-- Left Info Panel -->
+            <div class="contact-info-panel">
+                <h3 class="panel-title">Let's Collaborate</h3>
+                <p class="panel-desc">I'm always open to discussing new projects, creative ideas or opportunities to be
+                    part of your visions.</p>
+
+                <div class="contact-items">
+                    <div class="contact-item">
+                        <div class="icon-circle"><i class="fa-solid fa-map-location-dot"></i></div>
+                        <div class="item-text">
+                            <span>Location</span>
+                            <p> Bangalore, Karnataka, India</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon-circle"><i class="fa-solid fa-envelope-open-text"></i></div>
+                        <div class="item-text">
+                            <span>Email</span>
+                            <p>loganathan082008@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon-circle"><i class="fa-solid fa-phone"></i></div>
+                        <div class="item-text">
+                            <span>Phone</span>
+                            <p>+91 7010123479</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-squares">
+                    <a href="https://github.com/LOGANATHAN2008"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/loganathan-m-2008l/"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/kutty_loga_?igsh=YTQ4NTIxenk4c3Vt"><i
+                            class="fa-brands fa-instagram"></i></a>
+                    <a href="https://wa.me/7010123479"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <!-- Right Form Panel -->
+            <div class="contact-form-panel">
+                <form id="contact-form" action="https://formspree.io/f/xgopkzdn" method="POST">
+                    <div class="input-group-underline">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="input-group-underline">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" name="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="input-group-underline">
+                        <i class="fa-solid fa-message"></i>
+                        <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" id="submit-btn" class="send-gradient-btn">Send Message <i
+                            class="fa-solid fa-paper-plane"></i></button>
+                    <div id="form-status"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Footer Section -->
+    <footer class="footer-master">
+        <div class="footer-grid">
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="#about"><i class="fa-solid fa-user"></i> About</a></li>
+                    <li><a href="#education"><i class="fa-solid fa-calendar-days"></i> Education</a></li>
+                    <li><a href="#skills"><i class="fa-solid fa-rocket"></i> Skills</a></li>
+                    <li><a href="#projects"><i class="fa-solid fa-laptop-code"></i> Projects</a></li>
+                    <li><a href="#certifications"><i class="fa-solid fa-graduation-cap"></i> Certifications</a></li>
+                    <li><a href="#contact"><i class="fa-solid fa-address-book"></i> Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Branding Hub -->
+            <div class="footer-section brand-hub">
+                <div class="footer-logo-circle">
+                    <img src="assets/img/Blue_Modern_Computer_Technology_Logo-removebg-preview.png"
+                        alt="Loganathan Logo" class="footer-logo-img">
+                </div>
+                <h3>Loganathan M</h3>
+                <p class="brand-tag">AI Developer | Web Programmer</p>
+                <div class="footer-socials">
+                    <a href="https://github.com/LOGANATHAN2008"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/loganathan-m-2008l/"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="mailto:loganathan082008@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://wa.me/7010123479"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/kutty_loga_"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul class="footer-contact-list">
+                    <li><i class="fa-solid fa-location-dot"></i> Bangalore, Karnataka, India</li>
+                    <li><i class="fa-solid fa-phone"></i> +91 7010123479</li>
+                    <li><i class="fa-solid fa-envelope"></i> loganathan082008@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Loganathan M. All Rights Reserved.</p>
+            <div class="footer-iconTop">
+                <a href="#home"><i class="fa-solid fa-angle-up"></i></a>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- tsParticles -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <!-- Typed JS -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <!-- Scroll Reveal -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+
+</html>

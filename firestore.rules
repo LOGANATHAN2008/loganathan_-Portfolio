@@ -1,0 +1,67 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Global function to check if the user is authenticated (Admin)
+    function isAdmin() {
+      return request.auth != null;
+    }
+
+    // ==============================================
+    // PUBLIC READ, ADMIN WRITE COLLECTIONS
+    // ==============================================
+    
+    // Settings Collection (Profile Stats, Bio, Footer, Maintenance mode)
+    match /settings/{document=**} {
+      allow read: if true;
+      allow write, update, delete: if isAdmin();
+    }
+
+    // Certificates Collection
+    match /certificates/{document=**} {
+      allow read: if true;
+      allow write, update, delete: if isAdmin();
+    }
+
+    // Projects Collection
+    match /projects/{document=**} {
+      allow read: if true;
+      allow write, update, delete: if isAdmin();
+    }
+
+    // Education Timeline Collection
+    match /education/{document=**} {
+      allow read: if true;
+      allow write, update, delete: if isAdmin();
+    }
+
+    // Reviews Collection (Testimonials)
+    match /reviews/{document=**} {
+      allow read: if true;
+      allow write, update, delete: if isAdmin();
+    }
+
+    // ==============================================
+    // PUBLIC WRITE, ADMIN READ COLLECTIONS
+    // ==============================================
+
+    // Visitors Collection (Traffic Logs)
+    match /visitors/{document=**} {
+      // Anyone can log a visit
+      allow create: if true;
+      // Only Admin can view logs
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Messages Collection (Contact Form Submissions)
+    match /messages/{document=**} {
+      // Anyone can submit a message via the contact form
+      allow create: if true;
+      
+      // Only the Admin can read, update, or delete the received messages
+      allow read, update, delete: if isAdmin();
+    }
+    
+  }
+}
